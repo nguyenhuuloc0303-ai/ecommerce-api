@@ -1,9 +1,8 @@
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /usr/src/app
 
-# Install curl and wget for health checks
-RUN apk add --no-cache wget curl
+RUN apt-get update -y && apt-get install -y openssl curl wget && rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
 
